@@ -1,3 +1,4 @@
 .playwright-mcp
 .pnpm-store
 node_modules/
+.refs/

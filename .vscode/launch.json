@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "berkeley-arc: debug full stack",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/berkeley-arc/node_modules/next/dist/bin/next",
+      "runtimeArgs": ["--inspect"],
+      "cwd": "${workspaceFolder}/berkeley-arc",
+      "skipFiles": ["<node_internals>/**"],
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "killOnServerStop": true,
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "webRoot": "${workspaceFolder}/berkeley-arc"
+      }
+    },
+    {
+      "name": "berkeley-arc: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev -- --inspect",
+      "cwd": "${workspaceFolder}/berkeley-arc"
+    },
+    {
+      "name": "berkeley-arc: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/berkeley-arc"
+    }
+  ]
+}
