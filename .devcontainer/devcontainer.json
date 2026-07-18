@@ -22,7 +22,14 @@
 	"forwardPorts": [
 		4000
 	],
-	"postCreateCommand": "bash .devcontainer/post-create.sh"
+	// Persist Claude Code config (settings, credentials) across container rebuilds.
+	// Using ${devcontainerId} in the volume name scopes it to this project — each
+	// project gets its own isolated volume rather than sharing one across all devcontainers
+	// on the same Docker host.
+	"mounts": [
+		"source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
+	],
+	"postCreateCommand": "bash .devcontainer/post-create.sh && bash .devcontainer/post-create-claude.sh"
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
