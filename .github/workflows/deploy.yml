@@ -1,0 +1,91 @@
+# Deploys static sites to S3 + CloudFront.
+# Currently only animal-liberation-conference (ALC); other sites will be added
+# later — add their paths to both the trigger filter and the dorny filter, and
+# give each its own deploy job gated on its filter output.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "animal-liberation-conference/**"
+      - ".github/workflows/deploy.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "animal-liberation-conference/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Ensure only one run per branch is in flight so an older run can't finish after
+# a newer one and overwrite the current artifacts.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      alc: ${{ steps.filter.outputs.alc }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            alc:
+              - "animal-liberation-conference/**"
+              - ".github/workflows/deploy.yml"
+
+  deploy-alc:
+    needs: changes
+    # Manual dispatch has no diff to filter on, so it always runs the job.
+    if: needs.changes.outputs.alc == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: animal-liberation-conference
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: animal-liberation-conference/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+
+      - name: Sync to S3
+        # Pull requests only build as a check; deploy happens on push/dispatch.
+        if: github.event_name != 'pull_request'
+        run: aws s3 sync out "s3://${{ vars.ALC_S3_BUCKET }}" --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-west-2"
+
+      - name: Invalidate CloudFront
+        if: github.event_name != 'pull_request'
+        run: >
+          aws cloudfront create-invalidation
+          --distribution-id "${{ vars.ALC_CLOUDFRONT_DISTRIBUTION }}"
+          --paths "/*"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-west-2"
