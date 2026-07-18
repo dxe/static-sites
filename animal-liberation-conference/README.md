@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# animalliberationconference.com
 
-## Getting Started
+Static rebuild of the [Animal Liberation Conference](https://www.animalliberationconference.com/) Squarespace site as a Next.js app (App Router, TypeScript strict, Tailwind v4, `output: "export"`).
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev     # dev server (no SSG) — or use the launch.json configs in .vscode/
+pnpm build   # static export to ./out for production hosting
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` — homepage (2025 conference + past conferences)
+- `/what-is-alc` — About page
+- `/contact` — contact form (new canonical URL)
+- `/contact-2021` — meta-refresh redirect to `/contact` (old Squarespace URL)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes / deliberately not rebuilt
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`/schedule`** — exists on the live site (in sitemap.xml, not linked from nav) but renders no content beyond the footer. Not built.
+- **`/home`** — a Squarespace blog collection that only serves an RSS feed. Not built.
+- **`/search`** — Squarespace's built-in search. Not built.
+- **Homepage photo gallery** (`#photos` section) — present in the live markup but renders zero items on the live site. Omitted.
+- **Contact form submission** — the original posted to Squarespace's backend. The static rebuild opens the visitor's mail client (mailto to info@liberationconference.com) instead; swap in a form service (Formspree, Netlify Forms, …) if real submissions are needed.
+- **Fonts** — the original uses Adobe fonts `sofia-pro` and `effra`. Free Google Fonts substitutes are used: Poppins (buttons/mobile nav) and Rubik (footer wordmark). Oswald and Abel match the original.

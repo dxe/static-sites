@@ -30,6 +30,36 @@
       "request": "launch",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/berkeley-arc"
+    },
+    {
+      "name": "animal-liberation-conference: debug full stack",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/animal-liberation-conference/node_modules/next/dist/bin/next",
+      "runtimeArgs": ["--inspect"],
+      "cwd": "${workspaceFolder}/animal-liberation-conference",
+      "skipFiles": ["<node_internals>/**"],
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "killOnServerStop": true,
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "webRoot": "${workspaceFolder}/animal-liberation-conference"
+      }
+    },
+    {
+      "name": "animal-liberation-conference: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev -- --inspect",
+      "cwd": "${workspaceFolder}/animal-liberation-conference"
+    },
+    {
+      "name": "animal-liberation-conference: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/animal-liberation-conference"
     }
   ]
 }
