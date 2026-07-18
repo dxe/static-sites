@@ -2,10 +2,14 @@
   "mcpServers": {
     "playwright": {
       "type": "stdio",
-      "command": "npx",
+      "command": "pnpx",
       "args": [
         "@playwright/mcp@latest",
-        "--headless"
+        "--executable-path",
+        "/home/vscode/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell",
+        "--headless",
+        "--isolated",
+        "--no-sandbox"
       ]
     }
   }
