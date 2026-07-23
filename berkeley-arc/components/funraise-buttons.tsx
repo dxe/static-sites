@@ -5,6 +5,11 @@ import Script from "next/script";
 const FUNRAISE_ORG_ID = "472c107b-a760-4be2-b990-81c429da14d5";
 const FUNRAISE_FORM_ID = 13186;
 
+// The exact URL the loader below injects. Preloading it (same URL, same
+// no-crossorigin request) means it's served from cache the instant the loader
+// asks for it, so the widget starts up during hydration instead of after.
+const FUNRAISE_SCRIPT_SRC = `https://assets.funraise.io/widget/common/2.0/inject-form.js?orgId=${FUNRAISE_ORG_ID}`;
+
 const TIERS = [
   { amount: 15, color: "#5BC0DE" },
   { amount: 25, color: "#5BC0DE" },
@@ -24,6 +29,21 @@ window.funraise.push('create', { form: ${FUNRAISE_FORM_ID} });`;
 export function FunraiseButtons() {
   return (
     <>
+      {/*
+        Resource hints so the widget is ready to open the moment a button is
+        clicked. React hoists these <link>s into <head>. preconnect warms the
+        DNS/TCP/TLS handshake to Funraise; preload fetches the widget script in
+        parallel with hydration; dns-prefetch covers the reCAPTCHA hosts the
+        form iframe loads.
+      */}
+      <link rel="preconnect" href="https://assets.funraise.io" />
+      <link
+        rel="preload"
+        as="script"
+        href={FUNRAISE_SCRIPT_SRC}
+      />
+      <link rel="dns-prefetch" href="https://www.google.com" />
+      <link rel="dns-prefetch" href="https://www.gstatic.com" />
       <Script id="funraise-loader" strategy="afterInteractive">
         {FUNRAISE_LOADER}
       </Script>
