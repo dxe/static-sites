@@ -26,7 +26,7 @@ export function Footer() {
         </div>
         <nav className="mt-10">
           <Link
-            href="/contact"
+            href="/what-is-alc#contact"
             className="text-[14px] tracking-[0.24em] uppercase transition-opacity hover:opacity-80"
           >
             Contact Us

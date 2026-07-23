@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 export default function ContactRedirect() {
   return (
     <>
-      <meta httpEquiv="refresh" content="0;url=/contact" />
+      <meta httpEquiv="refresh" content="0;url=/what-is-alc#contact" />
       <div className="bg-alc-mist">
         <div className="mx-auto w-full max-w-[1180px] px-5 py-10 sm:px-9 sm:py-[90px] xl:px-[50px]">
           <p>
-            This page has moved to{" "}
-            <Link href="/contact" className="text-alc-link underline">
-              Contact Us
-            </Link>
-            .
+            This page has moved to the{" "}
+            <Link href="/what-is-alc#contact" className="text-alc-link underline">
+              About
+            </Link>{" "}
+            page.
           </p>
         </div>
       </div>

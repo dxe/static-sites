@@ -32,7 +32,7 @@ export default function WhatIsAlc() {
             Come experience what can happen when we rise up to achieve animal
             liberation together.
           </p>
-          <p>
+          <p id="contact">
             Questions? Email{" "}
             <a
               href="mailto:info@liberationconference.com"

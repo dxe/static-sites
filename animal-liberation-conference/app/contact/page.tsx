@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/components/contact-form";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contact Us",
+  robots: { index: false },
 };
 
-export default function Contact() {
+// Static export can't issue HTTP redirects, so serve a meta refresh that
+// hosts will render instantly.
+export default function ContactRedirect() {
   return (
-    <div className="bg-alc-mist">
-      <div className="mx-auto w-full max-w-[1180px] px-5 py-10 sm:px-9 sm:py-[90px] xl:px-[50px]">
-        <h1 className="font-heading text-[72px] font-bold leading-[1.19] text-alc-orange">
-          Contact Us
-        </h1>
-        <ContactForm />
+    <>
+      <meta httpEquiv="refresh" content="0;url=/what-is-alc#contact" />
+      <div className="bg-alc-mist">
+        <div className="mx-auto w-full max-w-[1180px] px-5 py-10 sm:px-9 sm:py-[90px] xl:px-[50px]">
+          <p>
+            Our contact info has moved to the{" "}
+            <Link href="/what-is-alc#contact" className="text-alc-link underline">
+              About
+            </Link>{" "}
+            page.
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
