@@ -58,7 +58,7 @@ export default function MembershipPage() {
           <p className="mt-6">
             One-time donations can be made at{" "}
             <a
-              href="https://directactioneverywhere.com"
+              href="https://www.directactioneverywhere.com"
               className="text-arc-salmon"
             >
               directactioneverywhere.com
