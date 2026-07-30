@@ -3,9 +3,11 @@ import { YouTube } from "@/components/youtube";
 import banner from "@/public/images/alc-banner.jpg";
 
 const h1Classes =
-  "font-heading text-[72px] font-bold leading-[1.19] text-alc-orange";
+  "font-heading text-[clamp(2.5rem,8vw,4.5rem)] font-bold leading-[1.19] text-alc-orange";
 const h2Classes =
   "font-heading text-[46.8px] font-bold leading-[1.19] text-alc-orange";
+const cityClasses =
+  "font-heading text-[32px] font-bold leading-[1.19] text-alc-orange mt-[8px]";
 const linkClasses = "text-alc-link underline";
 
 export default function Home() {
@@ -64,7 +66,7 @@ export default function Home() {
 
         <div className="py-[17px] text-center">
           <h2 className={h2Classes}>Ridglan Beagle Rescue Trial</h2>
-          <h2 className={`${h2Classes} mt-[15px]`}>Madison, WI</h2>
+          <p className={cityClasses}>Madison, WI</p>
         </div>
 
         <div className="py-[17px] md:float-left md:w-1/2 md:pr-[17px]">
@@ -118,10 +120,12 @@ export default function Home() {
             <br />
             <strong>WHEN:</strong> March 16th - 24th, 2024
           </p>
-          <h2 className={`${h2Classes} text-center`}>
-            Animal Liberation Conference 2023
-          </h2>
-          <h2 className={`${h2Classes} text-center`}>Berkeley, CA</h2>
+          <div>
+            <h2 className={`${h2Classes} text-center`}>
+              Animal Liberation Conference 2023
+            </h2>
+            <p className={`${cityClasses} text-center`}>Berkeley, CA</p>
+          </div>
           <p>
             Hundreds of us came together to connect, train, and take action.
             Together, we rescued 23 suffering animals during ALC 2023! Check
@@ -138,7 +142,7 @@ export default function Home() {
 
         <div className="py-[17px] text-center">
           <h2 className={h2Classes}>Foster Farms Trial</h2>
-          <h2 className={`${h2Classes} mt-[15px]`}>Merced, CA</h2>
+          <p className={cityClasses}>Merced, CA</p>
         </div>
 
         <div className="py-[17px] md:float-left md:w-[41.66%] md:pr-[17px]">
@@ -209,8 +213,10 @@ export default function Home() {
             <br />
             <strong>WHEN:</strong> March 7th - 17th, 2023
           </p>
-          <h2 className={`${h2Classes} text-center`}>Smithfield Trial</h2>
-          <h2 className={`${h2Classes} text-center`}>St. George, UT</h2>
+          <div>
+            <h2 className={`${h2Classes} text-center`}>Smithfield Trial</h2>
+            <p className={`${cityClasses} text-center`}>St. George, UT</p>
+          </div>
         </div>
 
         <div className="py-[17px] md:float-left md:w-1/2 md:pr-[17px]">
@@ -261,8 +267,10 @@ export default function Home() {
             <br />
             <strong>WHEN:</strong> October 3rd - 8th, 2022
           </p>
-          <h2 className={`${h2Classes} text-center`}>Iowa Convergence</h2>
-          <h2 className={`${h2Classes} text-center`}>Wright County, IA</h2>
+          <div>
+            <h2 className={`${h2Classes} text-center`}>Iowa Convergence</h2>
+            <p className={`${cityClasses} text-center`}>Wright County, IA</p>
+          </div>
         </div>
 
         <div className="clear-both gap-[34px] py-[17px] md:grid md:grid-cols-2">
@@ -308,10 +316,12 @@ export default function Home() {
         </div>
 
         <div className="space-y-[1em] py-[17px]">
-          <h2 className={`${h2Classes} text-center`}>
-            Animal Liberation Conference 2021
-          </h2>
-          <h2 className={`${h2Classes} text-center`}>Oakland, CA</h2>
+          <div>
+            <h2 className={`${h2Classes} text-center`}>
+              Animal Liberation Conference 2021
+            </h2>
+            <p className={`${cityClasses} text-center`}>Oakland, CA</p>
+          </div>
           <p>
             ALC 2021 brought together hundreds of dedicated activists to take
             action in California&rsquo;s Bay Area and the Central Valley.
