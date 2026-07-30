@@ -5,9 +5,9 @@ import banner from "@/public/images/alc-banner.jpg";
 const h1Classes =
   "font-heading text-[clamp(2.5rem,8vw,4.5rem)] font-bold leading-[1.19] text-alc-orange";
 const h2Classes =
-  "font-heading text-[46.8px] font-bold leading-[1.19] text-alc-orange";
+  "font-heading text-[clamp(1.625rem,5.2vw,2.925rem)] font-bold leading-[1.19] text-alc-orange";
 const cityClasses =
-  "font-heading text-[32px] font-bold leading-[1.19] text-alc-orange mt-[8px]";
+  "font-heading text-[clamp(1.125rem,3.56vw,2rem)] font-bold leading-[1.19] text-alc-orange mt-[8px]";
 const linkClasses = "text-alc-link underline";
 
 export default function Home() {
