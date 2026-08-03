@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Measure J is a citizen-initiated ballot measure in Sonoma County to prohibit factory farms in our community.",
 };
 
+// The live site serves the same page at / and /home.
 export default function Home() {
   return <HomePage />;
 }

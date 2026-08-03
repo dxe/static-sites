@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h4 {
+          margin-bottom: 0px;
+        }
+        p {
+          /* margin-top: 0px; */
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 25px; /* Very rounded corners */
+            overflow: hidden;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .card a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+            padding: 20px;
+        }
+        .card img {
+            border-radius: 20px; /* Rounded corners for the images */
+            margin-right: 20px;
+        }
+        .announcement {
+            font-size: 18px;
+            color: #555;
+            /* height: 100%; */
+/*             flex-grow: 1; /* Ensure the text takes up the available space */ */
+        }
+        .caret {
+            margin-left: auto; /* Push the caret to the right */
+            font-size: 60px; /* Adjust size as needed */
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg5xwLYVsTkZ6z2ygXR8b51w4wL6PIy8Hq-xkLeQty8uQc5g/viewform?usp=sf_link">
+        <img src="https://images.squarespace-cdn.com/content/v1/64f0ca4e779f6a1176ac700c/09e83a25-90ae-458e-af77-a5b167a6d00d/Yes+on+J+Logo+Blue+Only.png?format=1500w" alt="Doorknocking Logo" width="100" height="100">
+        <div class="announcement">
+          <h4>DoorKnocking Form</h4>
+          <p>For door knockers and shift leads</p>
+        </div>
+        <div class="caret">&rsaquo;</div> <!-- Right-facing caret -->
+    </a>
+</div>
+
+<div class="card">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqXTu_FmlvB23FXwvQHU8cmHUTQb62hDaHNwZy0KnuIX8MlA/viewform?usp=sf_link">
+    <img src="https://images.squarespace-cdn.com/content/v1/64f0ca4e779f6a1176ac700c/09e83a25-90ae-458e-af77-a5b167a6d00d/Yes+on+J+Logo+Blue+Only.png?format=1500w" alt="Phone Banking Logo" width="100" height="100">
+    <div class="announcement">
+      <h4>PhoneBanking Form</h4>
+      <p>For phonebanking shift leads
+      <br>Optional for phone bankers if there are 3 or fewer total</p>
+    </div>
+    <div class="caret">&rsaquo;</div> <!-- Right-facing caret -->
+  </a>
+</div>
+
+<div class="card">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSewV3z4-zElVvmg3SZhpHq6CnV8qV4ebBAZLrPIDo1SJMAipg/viewform?usp=sf_link">
+    <img src="https://images.squarespace-cdn.com/content/v1/64f0ca4e779f6a1176ac700c/09e83a25-90ae-458e-af77-a5b167a6d00d/Yes+on+J+Logo+Blue+Only.png?format=1500w" alt="Phone Banking Logo" width="100" height="100">
+    <div class="announcement">
+      <h4>Non-Canvassing Event Form</h4>
+      <p>For any other event that's not strictly doorknocking or phonebanking</p>
+    </div>
+    <div class="caret">&rsaquo;</div> <!-- Right-facing caret -->
+  </a>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple Bar Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            width: 48%;
+        }
+        .divider {
+            width: 1%;
+            background-color: #aaa;
+            margin: 0 1%;
+        }
+        .chart-wrapper {
+            margin-bottom: 30px;
+        }
+        .chart-wrapper canvas {
+            display: block;
+            margin: 0 auto;
+            width: 92%;
+            height: 400px; /* Increase the height */
+        }
+        .all-time canvas {
+          width: 60%;
+        }
+        .subtitle {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .column-title, .section-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .date-range {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .all-time-section {
+            margin-top: 40px;
+        }
+        .additional-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Script containing the data -->
+    <script>
+        
+var weeklyData = {
+	dateRange: "Oct 21 - Oct 28",
+	yesCount: 18,
+	conversationsCount: 676,
+	attemptsCount: 4582,
+	chartData: [
+		{
+			title: "Responses",
+			subtitle: `Number of markings for 'yes' to a yard sign: 18`,
+			labels: ["Strong Support", "Lean Support", "Undecided", "Lean Oppose", "Strong Oppose"],
+			data: [192, 56, 171, 49, 208]
+		},
+		{
+			title: "Conversations",
+			subtitle: `Conversations: 676`,
+			labels: ['Tanner, Almira', 'Vollmar, Curtis', 'Del Cueto, Michelle', 'Zirbel, Matthew', 'Vaughn, Yasirah', 'West, Carla', 'Chau, Rocky', 'Chavez, Susana', 'King, Cassie', 'API User, Call Hub', 'Holden, Mirais', 'Giver, Amy', 'Beger, Patrick', 'Lunsky, Michelle', 'bernier, lewis', 'Levy, Alison', 'Drapkin, Lisa', 'Eckmann, Moshe', 'Allen, Erik', 'Racelis, Antonelle', 'Karopkin, cassie', 'Kerr, Celia'],
+			data: [130, 83, 60, 53, 41, 36, 32, 32, 29, 28, 27, 24, 21, 19, 17, 12, 10, 10, 4, 4, 2, 2]
+		},
+		{
+			title: "Attempts",
+			subtitle: `Last week’s attempts: 4582`,
+			labels: ['Tanner, Almira', 'Zirbel, Matthew', 'Vaughn, Yasirah', 'Vollmar, Curtis', 'Del Cueto, Michelle', 'West, Carla', 'Drapkin, Lisa', 'Holden, Mirais', 'Chavez, Susana', 'Lunsky, Michelle', 'King, Cassie', 'Beger, Patrick', 'Chau, Rocky', 'Giver, Amy', 'Eckmann, Moshe', 'Racelis, Antonelle', 'bernier, lewis', 'Levy, Alison', 'Karopkin, cassie', 'Allen, Erik', 'Kerr, Celia', 'Petrauskaite, Rasa'],
+			data: [1007, 550, 463, 445, 228, 222, 200, 186, 182, 163, 154, 132, 126, 122, 111, 87, 60, 56, 36, 19, 18, 15]
+		}
+	]
+	};
+
+var monthlyData = {
+	dateRange: "Sep 28 - Oct 28",
+	yesCount: 146,
+	conversationsCount: 3155,
+	attemptsCount: 16185,
+	chartData: [
+		{
+			title: "Responses",
+			subtitle: `Number of markings for 'yes' to a yard sign: 146`,
+			labels: ["Strong Support", "Lean Support", "Undecided", "Lean Oppose", "Strong Oppose"],
+			data: [747, 419, 891, 281, 819]
+		},
+		{
+			title: "Conversations",
+			subtitle: `Conversations: 3155`,
+			labels: ['Tanner, Almira', 'Vaughn, Yasirah', 'Del Cueto, Michelle', 'Vollmar, Curtis', 'Chau, Rocky', 'King, Cassie', 'Chavez, Susana', 'API User, Call Hub', 'Zirbel, Matthew', 'West, Carla', 'Zurowska, maggie', 'Singleton, Ethan', 'Dudley, Nicholas', 'Taylor, Alexander', 'Cabral, Carla', 'bernier, lewis', 'Beger, Patrick', 'Mondragon, Jexi', 'Holden, Mirais', 'Eckmann, Moshe', 'Giver, Amy', 'Ro, Christopher', 'Levy, Alison', 'Lunsky, Michelle', 'Sanders, Mary'],
+			data: [502, 415, 315, 315, 169, 168, 166, 152, 101, 97, 94, 78, 75, 59, 53, 48, 40, 37, 36, 24, 24, 20, 19, 19, 19]
+		},
+		{
+			title: "Attempts",
+			subtitle: `Last month’s attempts: 16185`,
+			labels: ['Tanner, Almira', 'Vaughn, Yasirah', 'Vollmar, Curtis', 'Del Cueto, Michelle', 'Zirbel, Matthew', 'King, Cassie', 'Chau, Rocky', 'Chavez, Susana', 'West, Carla', 'Singleton, Ethan', 'Eckmann, Moshe', 'Dudley, Nicholas', 'Cabral, Carla', 'Holden, Mirais', 'Zurowska, maggie', 'Beger, Patrick', 'bernier, lewis', 'Drapkin, Lisa', 'Taylor, Alexander', 'Lunsky, Michelle', 'Mondragon, Jexi', 'Ro, Christopher', 'Giver, Amy', 'Racelis, Antonelle'],
+			data: [3285, 2628, 1393, 1289, 950, 939, 676, 652, 456, 378, 287, 274, 269, 249, 245, 226, 224, 205, 169, 163, 153, 128, 122, 104]
+		}
+	]
+	};
+
+const allTimeAttemptsCount = 44359;
+var allTimeChartData = {
+	title: "Attempts",
+	subtitle: `All time attempts: ${allTimeAttemptsCount}`,
+	labels: ['Tanner, Almira', 'Vollmar, Curtis', 'Vaughn, Yasirah', 'King, Cassie', 'Chau, Rocky', 'Jones, Kitty', 'Del Cueto, Michelle', 'Drapkin, Lisa', 'Zirbel, Matthew', 'Chavez, Susana', 'Mosley, Samuel', 'Ro, Christopher', 'Singleton, Ethan', 'West, Carla', 'Cabral, Carla', 'Taylor, Alexander', 'Dudley, Nicholas', 'Mondragon, Jexi', 'Racelis, Antonelle', 'bernier, lewis', 'Picklesimer, Paul Darwin', 'Levy, Alison', 'Giver, Amy', 'Beger, Patrick'],
+	data: [5821, 4037, 3484, 2214, 2050, 1602, 1586, 1376, 1342, 1276, 1092, 849, 837, 705, 684, 555, 543, 536, 535, 488, 480, 450, 443, 429]
+};
+
+    </script>
+
+    <!-- Chart containers with titles and date ranges -->
+    <div class="chart-container">
+        <!-- Left Column - Last week -->
+        <div class="column">
+            <div class="column-title">Last Week</div>
+            <div class="date-range" id="week-date-range"></div>
+            <div class="chart-wrapper">
+                <canvas id="chart1"></canvas>
+                <p class="subtitle"></p>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="chart2"></canvas>
+                <p class="subtitle"></p>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="chart3"></canvas>
+                <p class="subtitle"></p>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Right Column - Last month -->
+        <div class="column">
+            <div class="column-title">Last Month</div>
+            <div class="date-range" id="month-date-range"></div>
+            <div class="chart-wrapper">
+                <canvas id="chart4"></canvas>
+                <p class="subtitle"></p>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="chart5"></canvas>
+                <p class="subtitle"></p>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="chart6"></canvas>
+                <p class="subtitle"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- All time section -->
+    <div class="all-time-section">
+        <div class="section-title">All Time</div>
+        <div class="chart-wrapper all-time">
+            <canvas id="chart7"></canvas>
+            <p class="subtitle"></p>
+            <div id="all-time-calculations" class="additional-info"></div>
+        </div>
+    </div>
+
+    <!-- Script to create all charts and set date ranges -->
+    <script>
+        // Set the date ranges in the HTML
+        document.getElementById('week-date-range').textContent = weeklyData.dateRange;
+        document.getElementById('month-date-range').textContent = monthlyData.dateRange;
+
+        // Create weekly charts
+        weeklyData.chartData.forEach((chart, index) => {
+            var ctx = document.getElementById(`chart${index + 1}`).getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chart.labels, // X-axis labels
+                    datasets: [{
+                        data: chart.data, // Y-axis data
+                        backgroundColor: '#228ae6',
+                        categoryPercentage: 0.8,
+                        barPercentage: 0.8
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            ticks: {
+                                autoSkip: false, // Force all labels to display
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: chart.title
+                        },
+                        legend: {
+                            display: false // Disable the legend
+                        }
+                    }
+                }
+            });
+
+            // Set subtitle text
+            document.querySelector(`#chart${index + 1}`).nextElementSibling.textContent = chart.subtitle;
+        });
+
+        // Create monthly charts
+        monthlyData.chartData.forEach((chart, index) => {
+            var ctx = document.getElementById(`chart${index + 4}`).getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chart.labels, // X-axis labels
+                    datasets: [{
+                        data: chart.data, // Y-axis data
+                        backgroundColor: '#228ae6',
+                        categoryPercentage: 0.8,
+                        barPercentage: 0.8
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            ticks: {
+                                autoSkip: false, // Force all labels to display
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: chart.title
+                        },
+                        legend: {
+                            display: false // Disable the legend
+                        }
+                    }
+                }
+            });
+
+            // Set subtitle text
+            document.querySelector(`#chart${index + 4}`).nextElementSibling.textContent = chart.subtitle;
+        });
+
+        // Create all-time chart
+        var ctx = document.getElementById('chart7').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: allTimeChartData.labels, // X-axis labels
+                datasets: [{
+                    data: allTimeChartData.data, // Y-axis data
+                    backgroundColor: '#228ae6',
+                    categoryPercentage: 0.8,
+                    barPercentage: 0.8
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks: {
+                            autoSkip: false, // Force all labels to display
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: allTimeChartData.title
+                    },
+                    legend: {
+                        display: false // Disable the legend
+                    }
+                }
+            }
+        });
+
+        // Set subtitle text for all-time chart
+        document.querySelector('#chart7').nextElementSibling.textContent = allTimeChartData.subtitle;
+
+        // Calculations for all-time data
+        // const ratio = allTimeAttemptsCount / monthlyData.attemptsCount;
+        // const estimatedTotalConversations = Math.round(ratio * monthlyData.conversationsCount);
+        // const estimatedTotalYesCount = Math.round(ratio * monthlyData.yesCount);
+
+        // Display the calculated values
+        document.getElementById('all-time-calculations').innerHTML = `
+            Total conversations: 7510<br>
+            Total yard signs: 480
+        `;
+    </script>
+</body>
+</html>

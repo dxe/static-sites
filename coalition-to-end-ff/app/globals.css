@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Palette extracted from the live Squarespace site */
+  --color-ceff-blue: #abf0ff; /* lightAccent: hero bands, footer, logo card, primary buttons */
+  --color-ceff-accent: #8ccedc; /* accent */
+  --color-ceff-dark: #456268; /* darkAccent */
+  --color-ceff-ink: #484848; /* site "black": all text + headings + header gradient */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-heading: var(--font-oswald), sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  /* Live site uses Adobe "Obviously" for buttons/meta; Archivo is the closest Google font. */
+  --font-button: var(--font-archivo), Arial, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-ceff-ink);
+  background: #fff;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  /* Squarespace scales body text with viewport; matches live 19.9px @375 -> 22.7px cap */
+  font-size: 1.24rem;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: min(1rem + 0.48vw, 1.42rem);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+/* Type scale from live site (heading-N-size-values 4.8 / 3.5 / 2.5 / 1.4,
+   Squarespace vw formula, capped at ~1400px page width) */
+h1 {
+  font-size: 3.32rem;
+  line-height: 1.19;
+}
+h2 {
+  font-size: 2.53rem;
+}
+h3 {
+  font-size: 1.92rem;
+}
+h4 {
+  font-size: 1.24rem;
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: min(1rem + 4.56vw, 4.99rem);
+  }
+  h2 {
+    font-size: min(1rem + 3vw, 3.63rem);
+  }
+  h3 {
+    font-size: min(1rem + 1.8vw, 2.58rem);
+  }
+  h4 {
+    font-size: min(1rem + 0.48vw, 1.42rem);
+  }
+}
+
+a {
+  text-underline-offset: 0.15em;
 }

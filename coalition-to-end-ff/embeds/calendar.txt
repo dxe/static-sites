@@ -1,0 +1,8 @@
+<iframe class="calendar-iframe"
+  src="https://calendar.google.com/calendar/embed?src=c_db50f99bc1ddf69e51dc988b46ebc26696d384314b50a253579492b33568012e%40group.calendar.google.com&ctz=America%2FLos_Angeles" 
+  style="border: 0; width:100%; height: 100vh"
+  frameborder="0"
+  scrolling="no"
+  style="position: absolute;">
+  </iframe>
+<style>@media (max-width:500px){.calendar-iframe{width:400px !important;}}</style>
