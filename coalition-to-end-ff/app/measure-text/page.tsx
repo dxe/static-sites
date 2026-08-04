@@ -16,14 +16,14 @@ const SIZE_THRESHOLDS: Array<[string, string, string]> = [
   ["Sheep or lambs", "10,000 or more", "3,000 - 9,999"],
   ["Turkeys", "55,000 or more", "16,500 - 54,999"],
   [
-    "Chickens other than laying hens (other than a liquid manure handling systems)",
-    "125,000 or more",
-    "37,500 - 124,999",
-  ],
-  [
     "Laying hens or broilers (liquid manure handling systems)",
     "30,000 or more",
     "9,000 - 29,999",
+  ],
+  [
+    "Chickens other than laying hens (other than a liquid manure handling systems)",
+    "125,000 or more",
+    "37,500 - 124,999",
   ],
   [
     "Laying hens (other than a liquid manure handling systems)",
@@ -758,7 +758,7 @@ export default function MeasureTextPage() {
                   href={url}
                   target="_blank"
                   rel="noopener"
-                  className="underline"
+                  className="underline break-all"
                 >
                   {url}
                 </a>

@@ -258,7 +258,7 @@ export default function Page() {
             vulnerable.
           </p>
           <p>References:</p>
-          <p>
+          <p className="break-all">
             https://sonoma-county.legistar.com/View.ashx?M=F&ID=12929414&GUID=41A09836-8D20-4500-989A-27F1BFDEBA95
           </p>
           <p>

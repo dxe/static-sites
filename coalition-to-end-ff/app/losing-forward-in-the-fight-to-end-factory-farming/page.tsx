@@ -19,10 +19,10 @@ export default function LosingForwardPage() {
         />
       </div>
 
-      <Section width="narrow">
-        <h1 className="text-center">
+      <Section>
+        <h3 className="text-center">
           Losing Forward in the Fight to End Factory Farming
-        </h1>
+        </h3>
 
         <div className="mt-10 space-y-5">
           <p>

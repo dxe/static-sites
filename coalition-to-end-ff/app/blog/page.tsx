@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <Section>
-      <div className="grid grid-cols-1 items-center gap-10 pt-28 lg:grid-cols-2 lg:gap-16 lg:pt-20">
+      <div className="grid grid-cols-1 items-center gap-10 pt-28 md:grid-cols-2 md:gap-16 md:pt-20">
         <Link href="/blog/more-info" className="block">
           <Image
             src={postImg}

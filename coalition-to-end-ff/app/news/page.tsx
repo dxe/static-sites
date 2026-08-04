@@ -260,27 +260,27 @@ export default function NewsPage() {
             return (
               <div
                 key={item.href + item.title}
-                className="flex gap-5 py-6 first:pt-0"
+                className="flex flex-col gap-5 py-6 first:pt-0 sm:flex-row"
               >
                 {external ? (
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener"
-                    className="shrink-0"
+                    className="shrink-0 sm:w-40"
                   >
                     <Image
                       src={item.image}
                       alt=""
-                      className="aspect-3/2 w-28 object-cover sm:w-40"
+                      className="aspect-3/2 w-full object-cover"
                     />
                   </a>
                 ) : (
-                  <Link href={item.href} className="shrink-0">
+                  <Link href={item.href} className="shrink-0 sm:w-40">
                     <Image
                       src={item.image}
                       alt=""
-                      className="aspect-3/2 w-28 object-cover sm:w-40"
+                      className="aspect-3/2 w-full object-cover"
                     />
                   </Link>
                 )}

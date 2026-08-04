@@ -73,4 +73,6 @@ h4 {
 
 a {
   text-underline-offset: 0.15em;
+  /* Long bare URLs (footnotes/references) must break rather than overflow on mobile */
+  overflow-wrap: anywhere;
 }

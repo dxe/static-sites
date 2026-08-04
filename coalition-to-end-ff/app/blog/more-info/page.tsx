@@ -27,14 +27,17 @@ function CollageImage({
 }) {
   return (
     <div
-      className={`flex flex-col sm:flex-row ${
-        imagePosition === "right" ? "sm:flex-row-reverse" : ""
+      className={`flex flex-col lg:flex-row ${
+        imagePosition === "right" ? "lg:flex-row-reverse" : ""
       }`}
     >
-      <div className="sm:w-3/5">
+      <div className="relative mb-16 lg:mb-0 lg:w-3/5">
         <Image src={src} alt={alt} className="aspect-video w-full object-cover" />
+        <div className="absolute inset-x-0 bottom-0 flex translate-y-1/2 items-center bg-ceff-blue p-6 lg:hidden">
+          <p className="text-[0.95rem]">{caption}</p>
+        </div>
       </div>
-      <div className="flex items-center bg-ceff-blue p-6 sm:w-2/5">
+      <div className="hidden items-center bg-ceff-blue p-6 lg:flex lg:w-2/5">
         <p className="text-[0.95rem]">{caption}</p>
       </div>
     </div>
@@ -44,11 +47,11 @@ function CollageImage({
 export default function MoreInfoOnMeasureJPage() {
   return (
     <Section>
-      <div className="pt-28 lg:pt-20">
-        <h1>More Info on Measure J</h1>
-        <p className="mt-2 text-[0.85rem] text-ceff-ink/70">
+      <div className="pt-28 md:mx-auto md:max-w-[360px] lg:mx-0 lg:max-w-none lg:pt-20">
+        <p className="text-[0.85rem] text-ceff-ink/70">
           May 28 — Written By Alexander Taylor
         </p>
+        <h1 className="mt-2">More Info on Measure J</h1>
 
         <div className="mt-10">
           <FigureImage
@@ -772,6 +775,10 @@ export default function MoreInfoOnMeasureJPage() {
           making family farms viable again, is to level the playing field.
           There is no playing field for small farmers as long as CAFOs
           occupy it, and they won&apos;t leave without an eviction notice.&quot;
+        </p>
+
+        <p className="mt-10 text-[0.85rem] text-ceff-ink/70">
+          Alexander Taylor
         </p>
       </div>
     </Section>
