@@ -117,10 +117,18 @@ headless — the bar is: container present, no console errors from OUR code.
 ## Images
 
 1. Find the image URLs in the scraped HTML (`images.squarespace-cdn.com/...`).
+   ⚠️ Squarespace fluid-engine DOM order often does NOT match visual order
+   (blocks are placed via CSS `grid-area`). Trust the live screenshots (or the
+   `grid-area` values in the embedded `<style>`) for left-to-right/top-to-bottom
+   order, not DOM sequence.
 2. Download with curl into `coalition-to-end-ff/public/images/<slug>/`,
    **stripping query params** (`?format=...`). Sanitize filenames to
    lowercase-kebab (no spaces/`%2B`/unicode). If a source PNG is >2MB, append
    `?format=1500w` instead to get a web-sized version.
+   ⚠️ The CDN silently serves WebP unless you send an Accept header — use
+   `curl -H "Accept: image/jpeg"` (or `image/png`) so the saved file matches
+   its extension. Verify with `file <name>` and rename if the real codec
+   differs (some `.png` URLs are actually JPEG).
 3. Import statically and use `next/image` (dimensions come free):
    ```tsx
    import hero from "@/public/images/faq/hero.jpg";
