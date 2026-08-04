@@ -32,6 +32,36 @@
       "webRoot": "${workspaceFolder}/berkeley-arc"
     },
     {
+      "name": "coalition-to-end-ff: debug full stack",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/coalition-to-end-ff/node_modules/next/dist/bin/next",
+      "runtimeArgs": ["--inspect"],
+      "cwd": "${workspaceFolder}/coalition-to-end-ff",
+      "skipFiles": ["<node_internals>/**"],
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "killOnServerStop": true,
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "webRoot": "${workspaceFolder}/coalition-to-end-ff"
+      }
+    },
+    {
+      "name": "coalition-to-end-ff: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev -- --inspect",
+      "cwd": "${workspaceFolder}/coalition-to-end-ff"
+    },
+    {
+      "name": "coalition-to-end-ff: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/coalition-to-end-ff"
+    },
+    {
       "name": "animal-liberation-conference: debug full stack",
       "type": "node",
       "request": "launch",
