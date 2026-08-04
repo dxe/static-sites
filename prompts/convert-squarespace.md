@@ -26,7 +26,9 @@ Think about how to avoid cluttering the context. Avoid reading screenshots to ke
 - Squarespace CDN serves WebP unless `Accept: image/jpeg|png` header sent; some `.png` URLs are JPEG.
 - Fluid-engine DOM order ≠ visual order (CSS grid-area) — trust screenshots.
 - Both you and worker scripts should run with `--dangerously-skip-permissions` (fine in this devcontainer) — don't let permission prompts stall an autonomous run.
-- The Playwright MCP browser is a single shared instance — don't let parallel workers use it.
+- Run page workers one at a time (no agent-level concurrency). Time isn't a concern, and parallel workers sharing one app dir thrash the same `.next`/tsbuildinfo and can exhaust RAM. The Playwright MCP browser is a single shared instance — don't let parallel workers use it.
+- Workers must never run `pnpm build`/`next build` — they reach for it on their own if the prompt mentions SSG, so forbid it explicitly in the worker template. Run it once per batch via a cheap worker that reports back only pass/fail, any non-static routes, and distilled errors.
+- Same for typechecking/lint: scope each worker to its own page's files, or drop it from the worker template and run `tsc --noEmit` + lint once at the batch level.
 
 ### Pages with embeds
 
