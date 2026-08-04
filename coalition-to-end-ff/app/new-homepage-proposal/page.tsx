@@ -214,7 +214,7 @@ export default function Page() {
           </p>
           <p>
             These industrial facilities{" "}
-            <Link href="/research" className="underline">
+            <Link href="/impact-report" className="underline">
               <strong>harm animals, pollute our air and water, and spread disease</strong>
             </Link>
             . They are{" "}
@@ -225,7 +225,7 @@ export default function Page() {
           </p>
           <p>
             Measure J would{" "}
-            <Link href="/research" className="underline">
+            <Link href="/impact-report" className="underline">
               affect just <strong>3%</strong>
             </Link>{" "}
             of all animal farms in the county, requiring them to scale down to
@@ -270,7 +270,7 @@ export default function Page() {
             FAQ
           </Link>
           . For exact number limits imposed by this measure, see the{" "}
-          <Link href="/research" className="underline">
+          <Link href="/impact-report" className="underline">
             impact report
           </Link>{" "}
           or{" "}
