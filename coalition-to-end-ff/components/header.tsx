@@ -20,7 +20,6 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Eggs", href: "/cafos#cafo-eggs" },
       { label: "Dairy", href: "/cafos#cafo-dairy" },
       { label: "Poultry", href: "/cafos#cafo-poultry" },
-      { label: "FAQ", href: "/faq" },
     ],
   },
   { label: "FAQ", href: "/faq" },
